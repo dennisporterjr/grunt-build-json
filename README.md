@@ -61,31 +61,46 @@ Should take a source file's filepath return the property name the parsed value w
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, the default options are used to take two JSON files and combine them into one object. So if the `alpha.json` file has the content `{"alpha":"albert"}` and the `beta.json` file had the content `{"beta":"benjamin"}`, the generated result would be `{"alpha":"albert","beta":"benjamin"}`. (Note : The default settings would make it so this was indented/prettified.)
 
 ```js
 grunt.initConfig({
   buildjson: {
     options: {},
     files: {
-      'dest/master.json': ['src/menu.json', 'src/settings.json'],
+      'dest/master.json': ['src/alpha.json', 'src/beta.json'],
     },
   },
 });
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+In this example, the custom options are used to take two JSON files and combine them into one object. So if the `alpha.json` file has the content `{"alpha":"albert"}` and the `beta.json` file had the content `{"beta":"benjamin"}`, the generated result would be :``
+
+```js
+{
+    "ALPHA": {
+        "alpha": "albert"
+    },
+    "BETA": {
+        "beta": "benjamin"
+    }
+}
+```
 
 ```js
 grunt.initConfig({
   buildjson: {
     options: {
       indent: '  ',
-      collapse: true
+      collapse: false,
+      processPropertyName: function(filepath) {
+        var segments = filepath.split("/");
+        return segments[segments.length-1].split(".")[0].toUpperCase();
+      }
     },
     files: {
-      'dest/master.json': ['src/messages.json', 'src/data.json'],
+      'dest/master.json': ['src/alpha.json', 'src/beta.json'],
     },
   },
 });
