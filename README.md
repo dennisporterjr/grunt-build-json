@@ -61,7 +61,6 @@ Should take a source file's filepath return the property name the parsed value w
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to take two JSON files and combine them into one object. So if the `alpha.json` file has the content `{"alpha":"albert"}` and the `beta.json` file had the content `{"beta":"benjamin"}`, the generated result would be `{"alpha":"albert","beta":"benjamin"}`. (Note : The default settings would make it so this was indented/prettified.)
 
 ```js
 grunt.initConfig({
@@ -73,20 +72,9 @@ grunt.initConfig({
   },
 });
 ```
+In this example, the default options are used to take two JSON files and combine them into one object. So if the `alpha.json` file has the content `{"alpha":"albert"}` and the `beta.json` file had the content `{"beta":"benjamin"}`, the generated result would be `{"alpha":"albert","beta":"benjamin"}`. (Note : The default settings would make it so this was indented/prettified.)
 
 #### Custom Options
-In this example, the custom options are used to take two JSON files and combine them into one object. So if the `alpha.json` file has the content `{"alpha":"albert"}` and the `beta.json` file had the content `{"beta":"benjamin"}`, the generated result would be :``
-
-```js
-{
-    "ALPHA": {
-        "alpha": "albert"
-    },
-    "BETA": {
-        "beta": "benjamin"
-    }
-}
-```
 
 ```js
 grunt.initConfig({
@@ -104,6 +92,18 @@ grunt.initConfig({
     },
   },
 });
+```
+In this example, the custom options are used to take two JSON files and combine them into one object. So if the `alpha.json` file has the content `{"alpha":"albert"}` and the `beta.json` file had the content `{"beta":"benjamin"}`, the generated result would be :
+
+```js
+{
+    "ALPHA": {
+        "alpha": "albert"
+    },
+    "BETA": {
+        "beta": "benjamin"
+    }
+}
 ```
 
 ## Contributing
